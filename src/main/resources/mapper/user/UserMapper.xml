@@ -3,10 +3,22 @@
 <mapper namespace="com.ohoraming.springmybatis.mapper.UserMapper">
     <select id="getUserList" resultType="com.ohoraming.springmybatis.domain.User">
         SELECT
+            id,
             name,
             email,
             likes
         FROM
             user
+    </select>
+    <select id="getUser" resultType="com.ohoraming.springmybatis.domain.User">
+        SELECT
+            id,
+            name,
+            email,
+            likes
+        FROM
+            user
+        WHERE
+            id=#{id}
     </select>
 </mapper>
