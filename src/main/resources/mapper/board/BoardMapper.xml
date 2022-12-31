@@ -21,4 +21,10 @@
         WHERE
             id=#{id}
     </select>
+    <insert id="insertBoard">
+        INSERT INTO
+            board(title, file)
+        VALUES
+            (#{title}, #{file})
+    </insert>
 </mapper>

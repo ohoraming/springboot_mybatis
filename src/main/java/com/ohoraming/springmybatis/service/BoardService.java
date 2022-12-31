@@ -19,4 +19,8 @@ public class BoardService {
     public Board getBoard(String id) {
         return boardMapper.getBoard(id);
     }
+
+    public void insertBoard(Board board) {
+        boardMapper.insertBoard(board);
+    }
 }

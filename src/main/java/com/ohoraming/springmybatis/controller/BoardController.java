@@ -23,4 +23,10 @@ public class BoardController {
     public Board getBoard(@RequestParam String id) {
         return boardService.getBoard(id);
     }
+
+    @PostMapping("/new")
+    public List<Board> insertBoard(@RequestBody Board board) {
+        boardService.insertBoard(board);
+        return boardService.getBoardList();
+    }
 }

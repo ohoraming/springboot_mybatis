@@ -10,4 +10,5 @@ public interface BoardMapper {
     List<Board> getBoardList();
 
     Board getBoard(String id);
+    void insertBoard(Board board);
 }
