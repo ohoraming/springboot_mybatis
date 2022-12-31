@@ -34,7 +34,7 @@ public class UserController {
     }
 
     /*
-    user 추가
+    user 등록
     http://localhost:8080/api/v1/user/new
     JSON
     {
@@ -46,5 +46,20 @@ public class UserController {
     public List<User> insertUser(@RequestBody User user) { // body로 들어오는 JSON 가져옴
         userService.insertUser(user);
         return userService.getUserList();
+    }
+
+    /*
+    user 수정
+    http://localhost:8080/api/v1/user/9
+    JSON
+    {
+    "name": "입력",
+    "email": "입력"
+    }
+     */
+    @PutMapping("/{id}")
+    public User updateUser(@PathVariable String id, @RequestBody User user) {
+        userService.updateUser(id, user);
+        return userService.getUser(id);
     }
 }

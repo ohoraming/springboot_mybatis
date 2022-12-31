@@ -26,4 +26,14 @@ public class UserService {
         userMapper.insertUser(user);
     }
 
+    public void updateUser(String id, User updateuser) {
+        User user = userMapper.getUser(id);
+        if (user != null) {
+            user.setName(updateuser.getName());
+            user.setEmail(updateuser.getEmail());
+            userMapper.updateUser(user);
+        }
+        userMapper.updateUser(user);
+    }
+
 }
