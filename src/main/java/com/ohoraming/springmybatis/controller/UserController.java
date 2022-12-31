@@ -62,4 +62,14 @@ public class UserController {
         userService.updateUser(id, user);
         return userService.getUser(id);
     }
+
+    /*
+    user 삭제
+    http://localhost:8080/api/v1/user/9
+     */
+    @DeleteMapping("/{id}")
+    public List<User> deleteUser(@PathVariable String id) {
+        userService.deleteUser(id);
+        return userService.getUserList();
+    }
 }
