@@ -27,4 +27,12 @@
         VALUES
             (#{title}, #{file})
     </insert>
+    <update id="updateBoard">
+        UPDATE
+            board
+        SET
+            title=#{title}, file=#{file}
+        WHERE
+            id=#{id}
+    </update>
 </mapper>

@@ -1,6 +1,7 @@
 package com.ohoraming.springmybatis.controller;
 
 import com.ohoraming.springmybatis.domain.Board;
+import com.ohoraming.springmybatis.domain.User;
 import com.ohoraming.springmybatis.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -28,5 +29,11 @@ public class BoardController {
     public List<Board> insertBoard(@RequestBody Board board) {
         boardService.insertBoard(board);
         return boardService.getBoardList();
+    }
+
+    @PutMapping("/{id}")
+    public Board updateBoard(@PathVariable String id, @RequestBody Board board) {
+        boardService.updateBoard(id, board);
+        return boardService.getBoard(id);
     }
 }
