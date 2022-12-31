@@ -3,7 +3,7 @@ spring:
     driver: com.mysql.cj.jdbc.Driver
     jdbc-url: jdbc:mysql://localhost:3306/my_board?&serverTimezone=UTC&autoReconnect=true&allowMultiQueries=true&characterEncoding=UTF-8
     username: root
-    password:
+    password: 1234
     mapper-locations: classpath:/mapper/**/*.xml
 
 mybatis:

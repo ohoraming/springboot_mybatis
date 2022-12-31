@@ -3,24 +3,48 @@ package com.ohoraming.springmybatis.controller;
 import com.ohoraming.springmybatis.domain.User;
 import com.ohoraming.springmybatis.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequiredArgsConstructor
 @RequestMapping("/api/v1/user")
 @RestController
 public class UserController {
 
-    private final UserService userService;
+    @Autowired
+    UserService userService;
 
+    /*
+    user list 조회
+    http://localhost:8080/api/v1/user/all
+     */
     @GetMapping("/all")
     public List<User> getUserList() {
         return userService.getUserList();
     }
 
+    /*
+    user 단건 조회
+    http://localhost:8080/api/v1/user?id=2
+     */
     @GetMapping
     public User getUser(@RequestParam String id) {
         return userService.getUser(id);
+    }
+
+    /*
+    user 추가
+    http://localhost:8080/api/v1/user/new
+    JSON
+    {
+    "name": "입력",
+    "email": "입력"
+    }
+     */
+    @PostMapping("/new")
+    public List<User> insertUser(@RequestBody User user) { // body로 들어오는 JSON 가져옴
+        userService.insertUser(user);
+        return userService.getUserList();
     }
 }

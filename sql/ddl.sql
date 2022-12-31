@@ -1,9 +1,9 @@
 create table user (
-	seq INT not null auto_increment,
+	id INT not null auto_increment,
 	name varchar(20),
 	email varchar(100),
 	likes varchar(200),
-	primary key(seq)
+	primary key(id)
 );
 -- dummy data
 insert into user(name, email) values ('Rourke', 'rgallgher0@wikipedia.org');
