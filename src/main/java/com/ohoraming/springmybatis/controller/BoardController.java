@@ -36,4 +36,10 @@ public class BoardController {
         boardService.updateBoard(id, board);
         return boardService.getBoard(id);
     }
+
+    @DeleteMapping("/{id}")
+    public List<Board> deleteBoard(@PathVariable String id) {
+        boardService.deleteBoard(id);
+        return boardService.getBoardList();
+    }
 }

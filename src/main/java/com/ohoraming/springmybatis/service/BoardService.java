@@ -35,4 +35,12 @@ public class BoardService {
             throw new IllegalStateException("게시글이 존재하지 않습니다.");
         }
     }
+
+    public void deleteBoard(String id) {
+        if (boardMapper.getBoard(id) != null) {
+            boardMapper.deleteBoard(id);
+        } else {
+            throw new IllegalStateException("게시글이 존재하지 않습니다.");
+        }
+    }
 }
