@@ -32,12 +32,17 @@ public class UserService {
             user.setName(updateuser.getName());
             user.setEmail(updateuser.getEmail());
             userMapper.updateUser(user);
+        } else {
+            throw new IllegalStateException("회원이 존재하지 않습니다.");
         }
-        userMapper.updateUser(user);
     }
 
     public void deleteUser(String id) {
-        userMapper.deleteUser(id);
+        if (userMapper.getUser(id) != null) {
+            userMapper.deleteUser(id);
+        } else {
+            throw new IllegalStateException("회원이 존재하지 않습니다.");
+        }
     }
 
 }
