@@ -34,3 +34,18 @@ insert into board (title, file, likeCount) values ('Product Engineer', 'Et.png',
 insert into board (title, file, likeCount) values ('Biostatistician II', 'Imperdiet.tiff', 11);
 insert into board (title, file, likeCount) values ('Research Assistant II', 'Morbi.png', 54);
 insert into board (title, file, likeCount) values ('Account Executive', 'NullamPorttitor.avi', 69);
+
+create table likeBoard (
+  id INT not null auto_increment,
+  boardNum varchar(100),
+  userNum varchar(100),
+  likeCheck int(1),
+  primary key(id)
+);
+
+create table file (
+  id INT not null auto_increment,
+  boardNum varchar(10),
+  fileName varchar(100),
+  primary key(id)
+);
