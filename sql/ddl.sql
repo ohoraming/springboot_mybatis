@@ -1,51 +1,77 @@
-create table user (
-	id INT not null auto_increment,
-	name varchar(20),
-	email varchar(100),
-	likes varchar(200),
-	primary key(id)
-);
--- dummy data
-insert into user(name, email) values ('Rourke', 'rgallgher0@wikipedia.org');
-insert into user(name, email) values ('Trstram', 'tsloper1@1688.com');
-insert into user(name, email) values ('Bettine', 'bbuxton2@icq.com');
-insert into user(name, email) values ('Elaine', 'eanthill3@barnesandnoble.com');
-insert into user(name, email) values ('Caritta', 'cshute4@unesco.org');
-insert into user(name, email) values ('Loren', 'lsephton5@dot.gov');
-insert into user(name, email) values ('Hanni', 'hlegrand6@google.it');
-insert into user(name, email) values ('Micheline', 'mhuckfield7@netlog.com');
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
-create table board (
-  id INT not null auto_increment,
-  title varchar(100),
-  file varchar(100),
-  likeCount int(11),
-  primary key(id)
-);
+-- -----------------------------------------------------
+-- Schema my_board
+-- -----------------------------------------------------
 
--- dummy data
-insert into board (title, file, likeCount) values ('Editor', 'SapienCumSociis.ppt', 72);
-insert into board (title, file, likeCount) values ('Product Engineer', 'VestibulumRutrum.xls', 96);
-insert into board (title, file, likeCount) values ('Accounting Assistant I', 'IntegerAcNeque.ppt', 93);
-insert into board (title, file, likeCount) values ('Analog Circuit Design manager', 'CurabiturConvallisDuis.avi', 30);
-insert into board (title, file, likeCount) values ('Analyst Programmer', 'OdioIn.jpeg', 13);
-insert into board (title, file, likeCount) values ('Assistant Media Planner', 'AliquamAugueQuam.avi', 37);
-insert into board (title, file, likeCount) values ('Product Engineer', 'Et.png', 13);
-insert into board (title, file, likeCount) values ('Biostatistician II', 'Imperdiet.tiff', 11);
-insert into board (title, file, likeCount) values ('Research Assistant II', 'Morbi.png', 54);
-insert into board (title, file, likeCount) values ('Account Executive', 'NullamPorttitor.avi', 69);
+-- -----------------------------------------------------
+-- Schema my_board
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `my_board` DEFAULT CHARACTER SET utf8 ;
+USE `my_board` ;
 
-create table likeBoard (
-  id INT not null auto_increment,
-  boardNum varchar(100),
-  userNum varchar(100),
-  likeCheck int(1),
-  primary key(id)
-);
+-- -----------------------------------------------------
+-- Table `my_board`.`board`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `my_board`.`board` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(100) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
 
-create table file (
-  id INT not null auto_increment,
-  boardNum varchar(10),
-  fileName varchar(100),
-  primary key(id)
-);
+
+-- -----------------------------------------------------
+-- Table `my_board`.`file`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `my_board`.`file` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `boardNum` INT NOT NULL,
+  `fileName` VARCHAR(100) NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_file_board1_idx` (`boardNum` ASC) VISIBLE,
+  CONSTRAINT `fk_file_board1`
+    FOREIGN KEY (`boardNum`)
+    REFERENCES `my_board`.`board` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `my_board`.`user`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `my_board`.`user` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(20) NULL,
+  `email` VARCHAR(100) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `my_board`.`likeboard`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `my_board`.`likeboard` (
+  `boardNum` INT NOT NULL,
+  `userNum` INT NOT NULL,
+  PRIMARY KEY (`boardNum`, `userNum`),
+  INDEX `fk_board_has_user_user1_idx` (`userNum` ASC) VISIBLE,
+  INDEX `fk_board_has_user_board_idx` (`boardNum` ASC) VISIBLE,
+  CONSTRAINT `fk_board_has_user_board`
+    FOREIGN KEY (`boardNum`)
+    REFERENCES `my_board`.`board` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_board_has_user_user1`
+    FOREIGN KEY (`userNum`)
+    REFERENCES `my_board`.`user` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

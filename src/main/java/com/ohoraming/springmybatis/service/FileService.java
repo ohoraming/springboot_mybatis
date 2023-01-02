@@ -15,11 +15,7 @@ public class FileService {
     @Autowired
     FileMapper fileMapper;
 
-    @Value("${spring.servlet.multipart.location")
-    private String uploadPath;
-
     public String uploadFile(MultipartFile file) throws IOException {
-        System.out.println("it's upload mapping!");
         String original = file.getOriginalFilename();
         if (!file.isEmpty()) {
             log.debug("/file name = {}", original);
@@ -29,7 +25,7 @@ public class FileService {
         return original;
     }
 
-    public void insertFile(String boardNum, String filename) {
+    public void insertFile(int boardNum, String filename) {
         fileMapper.insertFile(boardNum ,filename);
     }
 }

@@ -25,11 +25,10 @@ public class BoardService {
         boardMapper.insertBoard(board);
     }
 
-    public void updateBoard(String id, Board updateBoard) {
+    public void updateBoard(String id, String title) {
         Board board = boardMapper.getBoard(id);
         if (board != null) {
-            board.setTitle(updateBoard.getTitle());
-            board.setFile(updateBoard.getFile());
+            board.setTitle(title);
             boardMapper.updateBoard(board);
         } else {
             throw new IllegalStateException("게시글이 존재하지 않습니다.");
@@ -42,5 +41,8 @@ public class BoardService {
         } else {
             throw new IllegalStateException("게시글이 존재하지 않습니다.");
         }
+    }
+    public List<Board> getLastBoard() {
+        return boardMapper.getLastBoard();
     }
 }

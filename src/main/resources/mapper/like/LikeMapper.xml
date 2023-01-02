@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohoraming.springmybatis.mapper.LikeMapper">
+    <select id="getLikeList" resultType="com.ohoraming.springmybatis.domain.Like">
+        SELECT
+            boardNum,
+            userNum
+        FROM
+            likeboard
+    </select>
+    <select id="getLike" resultType="Integer">
+        SELECT
+            count(*)
+        FROM
+            likeboard
+        WHERE
+            boardNum=#{boardNum}
+    </select>
+    <insert id="insertLike">
+        INSERT INTO
+            likeboard(boardNum, userNum)
+        VALUES
+            (#{boardNum}, #{userNum})
+    </insert>
+    <delete id="deleteLike">
+        DELETE FROM likeboard
+        WHERE userNum = #{userNum} AND boardNum = #{boardNum}
+    </delete>
+</mapper>

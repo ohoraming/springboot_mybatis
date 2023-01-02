@@ -3,8 +3,7 @@ package com.ohoraming.springmybatis.domain;
 import lombok.Data;
 
 @Data
-public class File {
-    private int id;
+public class Like {
     private int boardNum;
-    private String fileName;
+    private int userNum;
 }
