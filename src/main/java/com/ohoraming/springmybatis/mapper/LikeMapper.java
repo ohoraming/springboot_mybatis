@@ -1,7 +1,6 @@
 package com.ohoraming.springmybatis.mapper;
 
 import com.ohoraming.springmybatis.domain.Like;
-import com.ohoraming.springmybatis.domain.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

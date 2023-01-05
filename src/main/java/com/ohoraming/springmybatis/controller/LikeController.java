@@ -33,8 +33,11 @@ public class LikeController {
         return likeService.getLikeList();
     }
 
+    /*
+    http://localhost:8080/api/v1/like/2/2
+     */
     @DeleteMapping("/{userNum}/{boardNum}")
-    public Boolean deleteLike(@PathVariable("userNum") int userNum, int boardNum) {
+    public Boolean deleteLike(@PathVariable int userNum, @PathVariable int boardNum) {
         likeService.deleteLike(userNum, boardNum);
         return true;
     }
