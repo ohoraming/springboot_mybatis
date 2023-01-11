@@ -25,7 +25,14 @@
         WHERE
             id=#{id}
     </select>
-
+    <select id="getBoardPage" resultType="com.ohoraming.springmybatis.domain.Board">
+        SELECT
+            id,
+            title
+        FROM
+            board
+        LIMIT 5 OFFSET #{pageNum}
+    </select>
     <insert id="insertBoard" parameterType="com.ohoraming.springmybatis.domain.Board" useGeneratedKeys="true" keyColumn="id">
         INSERT INTO
             board(title)

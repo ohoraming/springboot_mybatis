@@ -21,6 +21,11 @@ public class BoardService {
         return boardMapper.getBoard(id);
     }
 
+    public List<Board> getBoardPage(Integer pageNum) {
+        Integer startPage = 5 * (pageNum - 1);
+        return boardMapper.getBoardPage(startPage);
+    }
+
     public void insertBoard(Board board) {
         boardMapper.insertBoard(board);
     }

@@ -9,6 +9,7 @@ import java.util.List;
 public interface BoardMapper {
     List<Board> getBoardList();
     Board getBoard(String id);
+    List<Board> getBoardPage(Integer pageNum);
     Integer insertBoard(Board board);
     void updateBoard(Board board);
     void deleteBoard(String id);

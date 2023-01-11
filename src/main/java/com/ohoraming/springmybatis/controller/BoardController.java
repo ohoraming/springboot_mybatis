@@ -31,6 +31,11 @@ public class BoardController {
         return boardService.getBoard(id);
     }
 
+    @GetMapping("/page")
+    public List<Board> getBoardPage(@RequestParam Integer pageNum) {
+        return boardService.getBoardPage(pageNum);
+    }
+
     /*
     file 업로드
     http://localhost:8080/api/v1/file/upload
@@ -50,8 +55,6 @@ public class BoardController {
         board.setId(isId.get(0).getId());
         String filename = fileService.uploadFile(file);
         fileService.insertFile(board.getId(), filename);
-        System.out.println(board.getId());
-        System.out.println(filename);
         return boardService.getBoardList();
     }
 
